@@ -10,6 +10,8 @@ services:
     configs:
       - source: elastic_config
         target: /usr/share/elasticsearch/config/elasticsearch.yml
+    volumes:
+      - /u01/elasticsearch/data:/usr/share/elasticsearch/data
     environment:
       ES_JAVA_OPTS: "-Xmx256m -Xms256m"
       ELASTIC_PASSWORD: changeme
@@ -42,7 +44,7 @@ services:
   kibana:
     image: docker.elastic.co/kibana/kibana:7.4.1
     ports:
-      - "5601:5601"
+      - "8601:5601"
     configs:
       - source: kibana_config
         target: /usr/share/kibana/config/kibana.yml
